@@ -1,0 +1,39 @@
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 80vw;
+    margin: 16px 0 24px 0;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-container > * {
+    display: flex;
+}
+
+.input-container > label {
+    font-size: 1.15rem;
+}
+
+.input-container > input, .input-container > select {
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+button {
+    border: none;
+    padding: 10px;
+    font-size: 1.2rem;
+    background-color: lightblue;
+}
+
+button:hover {
+    background-color: darkblue;
+    color: white;
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TaskForm from "./components/TaskForm.jsx";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -18,10 +19,15 @@ function App() {
     },
   ]);
 
+  function addTask(task) {
+    setTasks([...tasks, task]);
+  }
+
   return (
     <main>
       <h1>Task Tracker</h1>
       <p>Build: form → list → ui effect → polish to be prod ready</p>
+      <TaskForm onAdd={addTask}></TaskForm>
       <ul>
         {tasks.map((task) => {
           return (
