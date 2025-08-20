@@ -1,0 +1,47 @@
+.task-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: lightsalmon;
+    padding:0.5em 0.3em;
+}
+
+.done {
+    background-color: lightgreen;
+    display: none;
+}
+
+.done-checkbox {
+    font-size: 1.7em;
+    padding: 0 0.3em;
+    cursor: pointer;
+    user-select: none;
+}
+
+.task-item .priority {
+    width: 3em;
+    height: 2em;
+
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.task-item .title {
+    font-size: 1.3em;
+    font-weight: bold;
+    padding-left: 0.5em;
+    flex-grow: 5;
+}
+
+.high {
+    background-color: orangered;
+}
+
+.medium {
+    background-color: orange;
+}
+
+.low {
+    background-color: lightcoral;
+}

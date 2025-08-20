@@ -2,14 +2,12 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 80vw;
     margin: 16px 0 24px 0;
 }
 
 .input-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
 
 .input-container > * {
@@ -26,6 +24,10 @@
     margin-top: 5px;
 }
 
+.input-container > small {
+    color: red;
+}
+
 button {
     border: none;
     padding: 10px;
@@ -37,3 +39,5 @@ button:hover {
     background-color: darkblue;
     color: white;
 }
+
+

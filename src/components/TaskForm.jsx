@@ -3,7 +3,7 @@ import "./TaskForm.css";
 
 export default function TaskForm({ onAdd }) {
   const [title, setTitle] = useState("");
-  const [priority, setPriority] = useState("Medium");
+  const [priority, setPriority] = useState("3");
   const [minutes, setMinutes] = useState("");
   const [errors, setErrors] = useState({});
 
@@ -12,6 +12,10 @@ export default function TaskForm({ onAdd }) {
   useEffect(() => {
     titleRef.current.focus();
   }, []);
+
+  useEffect(() => {
+    validate();
+  }, [title, minutes]);
 
   function reset() {
     setTitle("");
@@ -65,7 +69,6 @@ export default function TaskForm({ onAdd }) {
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
-            validate();
           }}
         />
         {errors.title && <small>{errors.title}</small>}
@@ -73,9 +76,9 @@ export default function TaskForm({ onAdd }) {
       <div className={"input-container"}>
         <label>Priority</label>
         <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-          <option>High</option>
-          <option>Medium</option>
-          <option>Low</option>
+          <option value={"5"}>High</option>
+          <option value={"3"}>Medium</option>
+          <option value={"1"}>Low</option>
         </select>
       </div>
       <div className={"input-container"}>
@@ -85,7 +88,6 @@ export default function TaskForm({ onAdd }) {
           value={minutes}
           onChange={(e) => {
             setMinutes(e.target.value);
-            validate();
           }}
         />
         {errors.minutes && <small>{errors.minutes}</small>}
