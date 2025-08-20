@@ -4,7 +4,8 @@ import "./TaskForm.css";
 export default function TaskForm({ onAdd }) {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("Medium");
-  const [minutes, setMinutes] = useState(10);
+  const [minutes, setMinutes] = useState("");
+  const [errors, setErrors] = useState({});
 
   const titleRef = useRef(null);
 
@@ -18,17 +19,35 @@ export default function TaskForm({ onAdd }) {
     setMinutes(10);
   }
 
+  function validate() {
+    const error = {};
+    let isSuccess = true;
+    if (!title.trim()) {
+      error.title = "Title is required";
+      isSuccess = false;
+    }
+
+    if (isNaN(parseInt(minutes))) {
+      error.minutes = "Must be number";
+      isSuccess = false;
+    } else if (Number(minutes) < 3) {
+      error.minutes = "Must be at least 3 minutes";
+      isSuccess = false;
+    }
+
+    setErrors(error);
+    return isSuccess;
+  }
+
   function handleSubmit(ev) {
     ev.preventDefault();
-    if (!title.trim()) {
-      return;
-    }
+    if (!validate()) return;
 
     onAdd({
       id: Date.now(),
       title: title,
       priority: priority,
-      minutes: minutes,
+      minutes: parseInt(minutes),
       done: false,
     });
 
@@ -44,8 +63,12 @@ export default function TaskForm({ onAdd }) {
           ref={titleRef}
           placeholder="What will you do?"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {
+            setTitle(e.target.value);
+            validate();
+          }}
         />
+        {errors.title && <small>{errors.title}</small>}
       </div>
       <div className={"input-container"}>
         <label>Priority</label>
@@ -58,12 +81,14 @@ export default function TaskForm({ onAdd }) {
       <div className={"input-container"}>
         <label>Estimated Minutes</label>
         <input
-          type={"number"}
-          min={1}
-          step={1}
+          type={"text"}
           value={minutes}
-          onChange={(e) => setMinutes(parseInt(e.target.value))}
+          onChange={(e) => {
+            setMinutes(e.target.value);
+            validate();
+          }}
         />
+        {errors.minutes && <small>{errors.minutes}</small>}
       </div>
       <button type="submit">Submit</button>
     </form>
