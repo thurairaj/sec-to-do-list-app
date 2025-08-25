@@ -1,18 +1,24 @@
 import "./TaskItem.css";
 
-export default function TaskItem({ task, onToggle }) {
+export default function TaskItem({ task, onToggle, onDelete }) {
   function getPriority() {
     if (task.priority === "5") return "high";
     if (task.priority === "3") return "medium";
     if (task.priority === "1") return "low";
   }
   return (
-    <div onClick={() => onToggle(task.id)}>
-      <div className={"task-item " + (task.done ? "done" : "")}>
-        <span className={"done-checkbox"}>{task.done ? "✅" : "☑️"}</span>
-
+    <div>
+      <div
+        className={"task-item " + (task.done ? "done " : " ") + getPriority()}
+      >
         <span className={"title"}>{task.title}</span>
-        <span className={"priority " + getPriority()}>{task.minutes}</span>
+        <span
+          onClick={() => onToggle(task.id)}
+          className={"priority " + getPriority()}
+        >
+          {task.minutes}
+        </span>
+        <span onClick={() => onDelete(task.id)}>Delete</span>
       </div>
     </div>
   );

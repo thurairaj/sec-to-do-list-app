@@ -1,0 +1,17 @@
+.home h1 {
+    margin-bottom: 0;
+}
+.stats-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.stats-container p {
+    margin:0;
+}
+
+.stats-container > p > span {
+    font-weight: bold;
+}

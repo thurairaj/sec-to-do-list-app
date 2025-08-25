@@ -1,8 +1,9 @@
 .task-form {
     display: flex;
+    width: 75vw;
     flex-direction: column;
     gap: 12px;
-    margin: 16px 0 24px 0;
+    margin: 0 auto;
 }
 
 .input-container {

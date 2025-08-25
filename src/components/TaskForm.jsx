@@ -2,6 +2,7 @@ import { Component, useEffect, useRef, useState } from "react";
 import "./TaskForm.css";
 
 export default function TaskForm({ onAdd }) {
+  const [first, setFirst] = useState(true);
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("3");
   const [minutes, setMinutes] = useState("");
@@ -10,12 +11,14 @@ export default function TaskForm({ onAdd }) {
   const titleRef = useRef(null);
 
   useEffect(() => {
-    titleRef.current.focus();
-  }, []);
+    if (!first) {
+      validate();
+    }
+  }, [title, minutes]);
 
   useEffect(() => {
-    validate();
-  }, [title, minutes]);
+    titleRef.current.focus();
+  }, []);
 
   function reset() {
     setTitle("");
@@ -44,6 +47,7 @@ export default function TaskForm({ onAdd }) {
   }
 
   function handleSubmit(ev) {
+    setFirst(false);
     ev.preventDefault();
     if (!validate()) return;
 
@@ -92,7 +96,7 @@ export default function TaskForm({ onAdd }) {
         />
         {errors.minutes && <small>{errors.minutes}</small>}
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit">Add New Task</button>
     </form>
   );
 }

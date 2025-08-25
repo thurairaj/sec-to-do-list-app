@@ -1,0 +1,27 @@
+.vertical-bar {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+}
+
+.vertical-bar a {
+    text-decoration: none;
+    padding: 0.5em 1em;
+    color: #1a1a1a;
+}
+
+.vertical-bar a:hover {
+    background-color: lightgrey;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: row;
+    padding:1em;
+    width: 100%;
+}
+
+.list-content {
+    flex: 5;
+}
