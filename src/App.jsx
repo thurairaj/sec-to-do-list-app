@@ -9,6 +9,7 @@ import Home from "./pages/Home.jsx";
 import TaskAll from "./pages/tasks/TaskAll.jsx";
 import TasksActive from "./pages/tasks/TasksActive.jsx";
 import TasksCompleted from "./pages/tasks/TasksCompleted.jsx";
+import TaskDetail from "./pages/TaskDetail.jsx";
 
 function App() {
   const [tasks, setTasks] = useLocalStorage("aug25", []);
@@ -64,7 +65,16 @@ function App() {
             <Route path={"active"} element={<TasksActive />}></Route>
             <Route path={"completed"} element={<TasksCompleted />}></Route>
           </Route>
-
+          <Route
+            path={"/task/:id"}
+            element={
+              <TaskDetail
+                tasks={tasks}
+                toggleTask={toggleTask}
+                deleteTask={deleteTask}
+              />
+            }
+          />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

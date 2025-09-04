@@ -33,6 +33,7 @@
     font-weight: bold;
     padding-left: 0.5em;
     flex-grow: 5;
+    text-decoration: none;
 }
 
 .task-item.high {

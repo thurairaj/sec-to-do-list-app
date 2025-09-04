@@ -1,4 +1,5 @@
 import "./TaskItem.css";
+import { NavLink } from "react-router-dom";
 
 export default function TaskItem({ task, onToggle, onDelete }) {
   function getPriority() {
@@ -11,7 +12,9 @@ export default function TaskItem({ task, onToggle, onDelete }) {
       <div
         className={"task-item " + (task.done ? "done " : " ") + getPriority()}
       >
-        <span className={"title"}>{task.title}</span>
+        <NavLink to={"/task/" + task.id} className={"title"}>
+          <span>{task.title}</span>
+        </NavLink>
         <span
           onClick={() => onToggle(task.id)}
           className={"priority " + getPriority()}
